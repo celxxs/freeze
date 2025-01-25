@@ -19,7 +19,14 @@ if (visible) {
     var scale_y = height / sprite_height; // Escala en el eje Y
 
     // Dibuja el sprite escalado (cuadro de diálogo) centrado en la parte inferior
-    draw_sprite_ext(sprite_index, image_index, center_x, center_y, scale_x, scale_y, 0, c_white, 1);
+	draw_set_color(c_white); // Color blanco para el borde
+	var grosor = 5;
+	for(var i=0; i<grosor; i++){
+		draw_line(center_x - width / 2, (center_y - height / 2) + i , center_x + width / 2, (center_y - height / 2) + i); // Línea superior
+		draw_line((center_x + width / 2) + i, center_y - height / 2, (center_x + width / 2) + i, center_y + height / 2); // Línea derecha
+		draw_line(center_x + width / 2, (center_y + height / 2) + i, center_x - width / 2, (center_y + height / 2) + i); // Línea inferior
+		draw_line((center_x - width / 2) + i, center_y + height / 2, (center_x - width / 2) + i, center_y - height / 2); // Línea izquierda
+	}
 
     // Dibuja el texto dentro del cuadro de diálogo (centrado dentro del cuadro)
     draw_set_font(fuente_nolmal); // Fuente del texto
